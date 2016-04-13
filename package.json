@@ -1,0 +1,25 @@
+{
+  "name": "Book4life",
+  "version": "0.0.1",
+  "description": "A website that helps students with the over-priced books!",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Anonymous",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "ejs": "^2.4.1",
+    "express": "^4.13.4",
+    "express-session": "^1.13.0",
+    "fs": "0.0.2",
+    "ip": "^1.1.0",
+    "jsonfile": "^2.2.3",
+    "mysql": "^2.10.2",
+    "path": "^0.12.7",
+    "sendgrid": "^2.0.0",
+    "socket.io": "^1.4.4",
+    "util": "^0.10.3"
+  }
+}

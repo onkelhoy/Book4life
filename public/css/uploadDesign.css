@@ -1,0 +1,45 @@
+form {
+	margin: 60px auto;
+	padding: 30px;
+}
+
+option {
+	padding: 6px;
+}
+.searchList {
+	display: none;
+}
+
+#popup {
+	display: none;
+	width: 100%;
+	left: 0;
+	top: 0;
+	height: 100%;
+	position: absolute;
+	background-color: rgba(0, 0, 0, 0.8);
+}
+#popup > div {
+	background-color: white;
+	margin-top: 60px;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 5px 1px black;
+}
+.info {
+	display: none;
+	margin: 0px auto;
+	text-align: center;
+}
+.info > img {
+	max-width: 100%;
+}
+.info > p {
+	font-family: 'Raleway', sans-serif;
+	font-size: 24pt;
+	text-align: center;
+	width: 100%;
+	color: #444;
+	position: relative;
+	top: -80px;
+}

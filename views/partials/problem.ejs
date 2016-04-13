@@ -1,0 +1,14 @@
+<div class="container">
+	<div class="col-md-8 col-md-offset-2">
+		<% if(problem == 0) { %>
+			<% include html/login.html %>
+		<% } %>
+		<% if(problem == 1) { %>
+			<% include html/reg.html %> 
+		<% } %>
+		<% if(problem == 2) { %>
+			<% include html/upload.html %> 
+		<% } %>
+		<a href="/" class="btn btn-link">Take me Home</a>
+	</div>
+</div>

@@ -1,0 +1,207 @@
+.menuBtn {
+    position: absolute;
+    z-index: 10;
+    top: 5px;
+    left: 10px;
+    color: #555;
+}
+.menu {
+    position: absolute;
+    width: 20%;
+    height: 100%;
+    max-width: 350px;
+    min-width: 200px;
+    color: white;
+    left: -20%;
+    top: 0;
+    display: none;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 10;
+    overflow-y: scroll;
+}
+.nav {
+    width: 100%;
+}
+.nav > li {
+    width: 100%;
+    padding: 3%;
+    cursor: pointer;
+}
+.nav > li > p {
+    width: 100%;
+    font-size: 16pt;
+    position: relative;
+    padding-left: 5%;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.nav > li > p > i {
+    position: absolute;
+    top: 10%;
+    right: 10%;
+}
+.nav > li > p > .fa-caret-left {
+    right: 11%;
+}
+.nav > li > div {
+    width: 100%;
+    display: none;
+    position: relative;
+}
+.alist > li > p {
+    font-size: 14pt;
+    padding-left: 10%;
+}
+.alist > li > p > i {
+    top: 15%;
+}
+
+.simple {
+    width: 100%;
+}
+
+.c > ul {
+    list-style: none;
+    width: 100%;
+    margin-left: 0;
+    padding-left: 0;
+}
+.c > ul > li.centerV {
+    height: 40px;
+    line-height: 40px;
+}
+.c > ul > li > a {
+    display: block;
+    height: 100%;
+    font-size: 12pt;
+    padding-left: 10px;
+}
+.c > ul > li:nth-child(odd) > a {
+    border-top: 1px solid #444;
+    border-bottom: 1px solid #444;
+}
+.c > ul > div {
+    height: 30px;
+    line-height: 30px;
+    padding-left: 15px;
+    cursor: pointer;
+}
+.c > ul > div:nth-child(odd) {
+    border-top: 1px solid #444;
+    border-bottom: 1px solid #444;
+}
+.c > section {
+    width: 100%;
+    height: 15%;
+    min-height: 130px;
+    border-bottom: 1px solid #666;
+}
+.c > section > div {
+    position: relative;
+    float: left;
+    width: 50%;
+    height: 100%;
+    cursor: default;
+    text-align: center;
+    padding-top: 0;
+}
+.c > section > div + div{
+    box-sizing: border-box;
+    border-left: 1px solid #444;
+}
+.c > section > div > p {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 3%;
+    text-align: center;
+    border-bottom: 1px solid #444;
+    font-size: 14pt;
+}
+.c > section > div > div {
+    height: 70%;
+    position: relative;
+    cursor: pointer;
+}
+.c > section > div > div > p {
+
+    font-size: 32pt;
+}
+.c > section > div > div > p + p {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    font-size: 12pt;
+}
+.closeMenu {
+    width: 100%;
+    border-bottom: 1px solid #555;
+    padding: 10px;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+    font-size: 16pt;
+}
+
+/* special classes */
+.white {
+    color: white;
+    text-decoration: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.white:hover {
+    color: white;
+    text-decoration: none;
+}
+.box {
+    text-align: center;
+}
+.change {
+    width: 100%;
+    text-align: center;
+    padding: 6px 0;
+    display: none;
+}
+.add {
+    width: 100%;
+    text-align: center;
+    padding: 6px 0;
+    display: none;
+}
+
+#admin {
+    display: none;
+}
+.ratio {
+    width: 100%;
+    height: 50px;
+    margin: 10px 5px;
+}
+.ratio > input {
+    width: 16%;
+    float: left;
+
+    height: 20px;
+    text-align: center;
+}
+.ratio > input + input {
+    width: 70%;
+    
+    margin: 0 12px;
+    position: relative;
+}
+
+#ratioInfo {
+    padding: 0;
+}
+input[type=range] {
+    cursor: pointer;
+}

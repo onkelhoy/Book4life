@@ -1,0 +1,119 @@
+<div class="container">
+	<div class="row">
+		<% for(var i = 0; i < chapters.length; i++) { %>
+			<div class="col-sm-2 col-xs-12" id="book">
+				<a href="/book?id=<%= chapters[i].id %>">
+					<img src="http://i.imgur.com/1P4vzie.png" alt="chapter picture">
+					<p><%= chapters[i].chapter %></p>
+				</a>
+			</div>
+		<% } %>
+	</div>
+</div>
+
+
+<span class="menuBtn"><i class="fa fa-bars fa-4x"></i></span>
+<div class="menu">
+    <div class="closeMenu">Book Menu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-times"></i></div>
+    <ul class="nav">
+        <li>
+            <p>User Panel<i class="fa fa-caret-left"></i></p>
+            <div class="c">
+                <ul>
+                    <li class="centerV"><a href="/"><i class="fa fa-home fa-fw"></i> Home</a></li>
+                    <li class="centerV"><a href="/logout"><i class="fa fa-fw fa-user-times"></i> Logout</a></li>
+                    <li class="centerV"><a href="javascript:void(0)" onclick="goBack()"><i class="fa fa-fw fa-chevron-left"></i> Go Back</a></li>
+                </ul>
+            </div>
+        </li>
+        <li id="admin">
+            <p>Admin Panel<i class="fa fa-cog admin"></i></p>
+            <div class="c">
+            	<ul>
+                    <li id="adminDelete" class="centerV"><a href="javascript:void(0)" class="white" onclick="DELETE(2)"><i class="fa fa-fw fa-trash-o"></i> delete book</a></li>
+                    <li class="centerV"><a href="javascript:void(0)" class="white" onclick="ADDBOOK()">&nbsp;<i class="fa fa-plus"></i>&nbsp; add Chapter</a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div id="popup">
+    <div class="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
+        <button type="button" onclick="hidePop()" class="close" aria-label="Close"><i class="fa fa-times"></i></button>
+        <div><!-- errorMenu -->
+            <p class="bg-danger"></p>
+            <button class="btn btn-danger" onclick="hidePop()">Okay <i class="fa fa-frown-o"></i></button>
+        </div>
+        <div><!-- deleteMenu -->
+            <h3 cass="bg-danger">Delete this book</h3>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input class="form-control" type="password" id="password" placeholder="Write your password">
+                <p class="help-block">We need this for confirmation</p>
+            </div>
+            <button type="submit" onclick="deleteConfirmation(1)" class="btn btn-default">Confirm</button>
+        </div>
+        <div><!-- succesMenu -->
+            <p class="bg-success"></p>
+            <button id="successBTN" class="btn btn-success" onclick="hidePop()">Okay <i class="fa fa-smile-o"></i></button>
+        </div>
+        <div><!-- addMenu -->
+            <h3 cass="bg-danger">Add chapter</h3>
+            <div class="form-group">
+                <label for="chapterName">Chapter Name</label>
+                <input class="form-control" type="text" id="chapterName" placeholder="Name of the chapter">
+                <p class="help-block">Have the pages in a order for displaying in correct order.</p>
+            </div>
+            <div class="form-group">
+                <label for="pages">Select Pages</label>
+                <input type="file" id="pages" accept="image/*" multiple>
+                <p class="help-block">Have the pages in a order for displaying in correct order.</p>
+            </div>
+            <button type="submit" onclick="uploadChapter()" class="btn btn-default">Confirm</button>
+        </div>
+    </div>
+</div>
+
+<div class="info">
+    <img src="http://goo.gl/mSJPGp" alt="loading gif">
+    <p>Uploading page <span id="current">0</span> of <span id="count"></span></p>
+</div>
+
+<script>
+    var book = <%- JSON.stringify(book) %>;
+    var GHF = 'hej';
+    
+	window.onload = function(){
+        canLeave = true;
+        socket = io('/');
+        socket.on('bookRemoved', bookRemoved);
+        socket.on('updateAns', updateAns);
+        socket.on('uploadAns', bookupl);
+
+        function updateAns(data){
+            if(data.type == 'error'){
+                showError(data.msg, 1);
+            }
+            else {
+                showSucces(data.msg, 1);
+            }
+        }
+        function bookupl(){
+            showSucces('Chapter succesfully uploaded', 1, function(){
+                window.location.reload();
+            });
+        }
+
+        if(ADMIN != true){
+            if(USERNAME == book.creator) {
+                $('#admin').show();
+                $('#adminDelete').remove();
+            } 
+            else $('#admin').remove();
+        }
+        else {
+            $('#admin').show();
+        }
+    }
+</script>

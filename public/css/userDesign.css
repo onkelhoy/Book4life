@@ -1,0 +1,92 @@
+/*user form*/
+#user_form{
+    margin-top: 10%;
+    min-width: 300px;
+}
+#user_form > #body {
+    border: 2px solid lightcoral;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
+    box-sizing: border-box;
+    padding: 6%;
+    position: relative;
+    box-shadow: 0 2px 5px #cecece;
+}
+#user_form p {
+    width: 100%;
+    position: relative;
+}
+#user_form input {
+     padding: 6px 10px;
+     margin: 5px;
+     color: darkslategray;
+     width: 70%;
+     position: relative;
+     left: 10%;
+     outline: none;
+     border: 1px solid deepskyblue;
+     border-top-right-radius: 10px;
+}
+#user_form input:focus {
+    border: 1px solid #00f9ff;
+}
+#user_form p:last-of-type > input {
+    padding: 6px 10px;
+    margin: 35px 0 0 0;
+    color: darkslategray;
+    background-color: #e0ebff;
+    width: 30%;
+    position: relative;
+    left: 35%;
+    outline: none;
+    border: 1px solid #a3a3a3;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 0;
+}
+#user_form p:last-of-type > input:focus {
+    border: 1px solid #a3a3a3;
+}
+#user_form p:last-of-type > input:active {
+    border: 1px solid #5c5c5c;
+}
+
+#user_form_controlles{
+    width: 40%;
+    min-width: 200px;
+    height: 25px;
+}
+#user_form_controlles > div{
+    width: 40%;
+    text-align: center;
+    line-height: 25px;
+    margin: 0 4%;
+    height: 100%;
+    border: 1px solid lightcoral;
+    border-bottom: none;
+    border-top-right-radius: 10px;
+    float: left;
+    background-color: #fff; /*default value*/
+    cursor: pointer;
+}
+#user_form_controlles > div:hover {
+    background-color: #f7f7f7;
+}
+#user_form_controlles > .active {
+    background-color: #f1f1f1;
+}
+#user_form_controlles > .active:hover {
+    background-color: #e5e5e5;
+}
+
+#error {
+    color: red;
+    font-size: 12pt;
+    position: absolute;
+    left: 17%;
+}
+#errorr {
+    color: red;
+    font-size: 12pt;
+    position: absolute;
+    left: 17%;
+}

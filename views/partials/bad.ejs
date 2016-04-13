@@ -1,0 +1,30 @@
+<style>
+	.container-fluid {
+		overflow: hidden;
+		padding: 0;
+	}
+	.container-fluid > img {
+		width: 100%;
+		min-width: 1200px;
+		box-shadow: 0 0 5px #000;
+	}
+	.container-fluid > a {
+		display: block;
+		text-align: center;
+		padding: 25px;
+	}
+	footer {
+		display: none;
+	}
+</style>
+<div class="container-fluid">
+	<img src="content/404.jpg" alt="404 image" title="Can't find page">
+	<a href="/">Take me Home</a>
+</div>
+
+<script>
+	$('#wrapper').height(window.innerHeight);
+	$('#wrapper').width(window.innerWidth);
+
+	$('.container-fluid > img').css('left', -($('.container-fluid > img').width() - window.innerWidth)/2);
+</script>

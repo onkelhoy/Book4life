@@ -1,0 +1,32 @@
+<html>
+<head>
+	<% include partials/head.ejs %>
+	<link rel="stylesheet" href="css/bookDesign.css">
+	<link rel="stylesheet" href="css/pagesDesign.css">
+	<link rel="stylesheet" href="css/menuDesign.css">
+	<link rel="stylesheet" href="css/popupDesign.css">
+</head>
+<body>
+	<script>
+		var ADMIN = <%= admin %>;
+		var USERNAME = '<%= username %>';
+	</script>
+
+	<% if(book.kapitel == 1) { %>
+		<% include partials/pages.ejs %>
+	<% } else { %>
+		<script>
+			if($('body').hasClass('black')){ // prevent the dark theme
+				$('body').removeClass('black');
+			}
+		</script>
+		<% include partials/chapters.ejs %>
+	<% } %>
+
+	<% include partials/footer.ejs %>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="js/bookMenu.js"></script>
+	<script src="js/filter.js"></script>
+	<script src="js/upload.js"></script>
+</body>
+</html>

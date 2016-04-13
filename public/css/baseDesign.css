@@ -1,0 +1,126 @@
+footer {
+	/*position: absolute;*/
+	width: 100%;
+	min-height: 50%;
+
+	/*bottom: -20%;*/
+	margin-top: 20%;
+	position: absolute;
+	background-color: #D1F4FF;
+	padding-bottom: 5%;
+	padding-top: 50px;
+}
+footer:before {
+	background: linear-gradient(45deg, #ffffff 16px, transparent 0), linear-gradient(-45deg, #ffffff 16px, transparent 0);
+    background-position: left-top;
+    background-repeat: repeat-x;
+    background-size: 32px 32px;
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 32px;
+}
+* {
+	font-family: 'Raleway', sans-serif;
+}
+
+
+.problem > div > div {
+	margin-top: 100px;
+	padding: 60px 40px;
+}
+
+.m_menu {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.6);
+	width: 100%;
+	height: 55px;
+	padding: 8px;
+	z-index: 5;
+}
+.m_content {
+	display: none;
+	position: absolute;
+	top: 55px;
+	left: 0;
+	width: 70%;
+	min-width: 250px;
+	max-width: 300px;
+	min-height: 200px;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+.m_content > div {
+	border-bottom: 1px solid gray;
+	width: 100%;
+	height: 60px;
+	color: white;
+	position: relative;
+}
+.m_content > div:first-child {
+	border-top: 1px solid gray;
+}
+
+.m_content > div > a {
+	font-size: 12pt;
+	display: block;
+	width: 90%;
+
+	height: 100%;
+	line-height: 350%;
+	position: relative;
+	color: white;
+	text-decoration: none;
+}
+.m_content > div > a > i {
+	margin: 0 8%;
+	margin-right: 10%;
+}
+#logout {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 8px;
+	z-index: 1;
+	/*color: darkgray;*/
+}
+#logout > a {
+	/*text-decoration: none;*/
+	color: #180070;
+	cursor: pointer;
+	position: relative;
+	z-index: 5;
+}
+
+.social_medias {
+	width: 100%;
+	margin: 10% 2%;
+}
+.social_medias > a {
+	display: inline-block;
+	width: 15%;
+	max-width: 50px;
+	margin: 0.4%;
+	text-align: center;
+	border-radius: 100%;
+	background-color: #404040;
+	color: white;
+	text-decoration: none;
+
+	vertical-align:middle;
+}
+.social_medias > a:hover {
+	color: white;
+}
+.social_medias > a > i {
+	padding-top: 30%;
+}

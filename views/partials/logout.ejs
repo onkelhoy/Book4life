@@ -1,0 +1,39 @@
+<div class="m_menu visible-xs">
+	<button type="button" onclick="showMenu()" class="btn btn-default"><i class="fa fa-bars fa-2x"></i></button>
+	<div class="rows m_content"><!-- can always add content here from other -->
+		<div>
+			<a href="/"><i class="fa fa-home"></i>Home</a>
+		</div>
+		<div>
+			<a href="/upload"><i class="fa fa-book"></i>Upload</a>
+		</div>
+		<div>
+			<a href="/logout"><i class="fa fa-user-times"></i>Logout</a>
+		</div>
+		
+	</div>	
+</div>
+<script>
+	var mshow = true;
+	function showMenu(){
+		if(mshow) {
+			mshow = false;
+			$('.m_content').show();
+		} else {
+			mshow = true;
+			$('.m_content').hide();
+		}
+	}
+	$(document).mouseup(function (e) {
+	    var mContainer = $(".m_content");
+	    var mBtn = $('.m_menu > button');
+
+	    if (!mContainer.is(e.target)  && !mBtn.is(e.target) // if the target of the click isn't the container...
+	        && mContainer.has(e.target).length === 0 && mBtn.has(e.target).length === 0) // ... nor a descendant of the container
+	    {
+	    	mshow = true;
+	        mContainer.hide();
+	    }
+	});
+</script>
+<p id="logout" class="hidden-xs">You are logged in as <strong><%= username %></strong> (<a href="/logout">Logout</a>)</p>

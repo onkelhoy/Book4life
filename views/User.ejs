@@ -1,0 +1,42 @@
+<html>
+<head>
+	<% include partials/head.ejs %>
+	<link rel="stylesheet" href="css/userDesign.css">
+	<script src="js/filter.js"></script>
+	<script src="js/login.js"></script>
+</head>
+<body class="<%= classname %>">
+	<div class="container">
+		<form class="col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2" method='post' id='user_form'>
+			<div id='user_form_controlles'>
+				<div onclick='show_login();' id='1'>sign in</div>
+				<div onclick='show_register();' id='2'>sign up</div>
+			</div>
+			<div id='body'>
+				<div id='login' onkeypress="enterpress(event)">
+					<p><input type='text' placeholder='Username' id='username_login'></p>
+					<p><input type='password' placeholder='Password' id='password_login'></p>
+					<span id="error"></span>
+					<p><input type='button' value='Login' id='login_submit' onclick='login();'></p>
+				</div>
+				<div id='register' onkeypress="enterpress(event)">
+					<p><input type='text' placeholder='Username' id='username_reg'></p>
+					<p><input type='password' placeholder='Password' id='password_reg'></p>
+					<p><input type='password' placeholder='re-enter password' id='repassword_reg'></p>
+					<p><input type='email' placeholder='email' id='email_reg'></p>
+					<span id="errorr"></span>
+					<p><input type='button' value='Register' id='reg_submit' onclick='register();'></p>
+				</div>
+			</div>
+		</form>
+	</div>
+	<% include partials/footer.ejs %>
+
+	<% if(classname == 'login') { %>
+		<script>show_login();</script>
+	<% } %>
+	<% if(classname == 'register') { %>
+		<script>show_register();</script>
+	<% } %>
+</body>
+</html>

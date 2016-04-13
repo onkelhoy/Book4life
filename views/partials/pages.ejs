@@ -1,0 +1,209 @@
+<div class="t">
+    <div class="tc rel" id="zoomElm">
+        <div class="book" id="book">
+            
+        </div>
+        
+        <input class="slider" type="range" min="1" max="10" value="1" step="1" onchange="slider(this.value)"/>
+    </div>
+</div>
+<div class="zoom_controls">
+	<li><button title=" zoom in " onclick="zoomIn()"><i class="fa fa-search-plus fa-2x"></i></button></li>
+	<li><button title=" zoom out " onclick="zoomOut()"><i class="fa fa-search-minus fa-2x"></i></button></li>
+	<li><button title=" reset " onclick="reset()"><i class="fa fa-search fa-2x"></i></button></li>
+</div>
+
+<a href="javascript:void(0)" onclick="blacked()" id="darkTheme"><i class="fa fa-square fa-5x"></i></a>
+<a href="javascript:void(0)" id="back" onclick="goBack()"><i class="fa fa-arrow-left fa-5x"></i></a>
+
+<span class="menuBtn"><i class="fa fa-bars fa-4x"></i></span>
+<div class="menu">
+    <div class="closeMenu">Book Menu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-times"></i></div>
+    <ul class="nav">
+        <li>
+            <p>User Panel<i class="fa fa-caret-left"></i></p>
+            <div class="c">
+                <ul>
+                    <li class="centerV"><a href="/"><i class="fa fa-home fa-fw"></i> Home</a></li>
+                    <li class="centerV"><a href="/logout"><i class="fa fa-fw fa-user-times"></i> Logout</a></li>
+                    <li class="centerV"><a href="javascript:void(0)" onclick="goBack()"><i class="fa fa-fw fa-chevron-left"></i> Go Back</a></li>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <p>Zoom Panel<i class="fa fa-caret-left"></i></p>
+            <div class="c">
+                <ul>
+                    <div onclick="zoomIn()"><i class="fa fa-search-plus"></i> - zoom in</div>
+                    <div onclick="zoomOut()"><i class="fa fa-search-minus"></i> - zoom out</div>
+                    <div onclick="reset()"><i class="fa fa-search"></i> - reset</div>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <p>Book Panel<i class="fa fa-caret-left"></i></p>
+            <div class="c">
+                <section>
+                    <div>
+                        <p class="l">left</p>
+                        <div class="lb">
+                            <p class="lc">0</p>
+                            <p><i class="fa fa-angle-left"></i>&nbsp;&nbsp;Previus</p>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="r">right</p>
+                        <div class="rb">
+                            <p class="rc">0</p>
+                            <p>Next&nbsp;&nbsp;<i class="fa fa-angle-right"></i></p>
+                        </div>
+                    </div>
+                </section>
+                <div class="ratio">
+                    <input  class="form-control" onClick="this.setSelectionRange(0, this.value.length)" id="ratioInfo" type="text" value="1">
+                    <input id="ratioSlider" type="range" min="0.5" max="2" step="0.01" value="1" />
+                </div>
+            </div>
+        </li>
+        <li id="admin">
+            <p>Admin Panel<i class="fa fa-cog admin"></i></p>
+            <div class="c">
+                <div class="c">
+                    <ul>
+                        <li class="centerV"><a href="javascript:void(0)" class="white" onclick="DELETE(7)"><i class="fa fa-fw fa-trash-o"></i> delete chapter</a></li>
+                    </ul>
+                </div>
+                <ul class="alist nav">
+                    <li>
+                        <p>add<i class="fa fa-caret-left"></i></p>
+                        <div class="c">
+                            <div class="box">
+                                <span><em>left - </em></span>
+                                <div class="btn-group">
+                                    <button onclick="modify(0, 1)" class="btn btn-default"><i class="fa fa-angle-left"></i></button>
+                                    <button onclick="modify(1, 1)" class="btn btn-default"><i class="fa fa-angle-right"></i></button>
+                                </div>
+                                <span><em> - right</em></span>
+                            </div>
+                            <div class="add">
+                                <button onclick="before(1)" class="btn btn-danger btn-xs">before</button>
+                                <button onclick="before(0)" class="btn btn-primary btn-xs">after</button>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <p>modify<i class="fa fa-caret-left"></i></p>
+                        <div class="c">
+                            <div class="box">
+                                <span><em>left - </em></span>
+                                <div class="btn-group">
+                                    <button onclick="modify(0)" class="btn btn-default"><i class="fa fa-angle-left"></i></button>
+                                    <button onclick="modify(1)" class="btn btn-default"><i class="fa fa-angle-right"></i></button>
+                                </div>
+                                <span><em> - right</em></span>
+                            </div>
+                            <div class="change">
+                                <button onclick="removeP()" class="btn btn-danger btn-xs">remove</button>
+                                <button onclick="changeP()" class="btn btn-primary btn-xs">change</button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div id="popup">
+    <div class="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
+        <button type="button" onclick="hidePop()" class="close" aria-label="Close"><i class="fa fa-times"></i></button>
+        <div><!-- changeMenu -->
+            <h3>Change current <span></span> page</h3>
+            <div class="form-group">
+                <label for="page">Select Page</label>
+                <input type="file" id="page" accept="image/*">
+                <p class="help-block">You can upload page</p>
+            </div>
+            <div class="form-group">
+                <label for="page_link">Link to Page</label>
+                <input class="form-control" type="text" id="page_link" placeholder="Link to page/image">
+                <p class="help-block">Or you could link to image</p>
+            </div>
+            <button type="submit" onclick="save(1)" class="btn btn-default">Confirm</button>
+        </div>
+        <div><!-- removeMenu -->
+            <p class="removeInfo"></p>
+            <button type="submit" class="btn btn-default removeCon">Confirm</button>
+        </div>
+        <div><!-- errorMenu -->
+            <p class="bg-danger"></p>
+            <button class="btn btn-danger" onclick="hidePop()">Okay <i class="fa fa-frown-o"></i></button>
+        </div>
+        <div><!-- succesMenu -->
+            <p class="bg-success"></p>
+            <button class="btn btn-success" onclick="hidePop()">Okay <i class="fa fa-smile-o"></i></button>
+        </div>
+        <div><!-- uploadingMenu -->
+            <img src="" alt="uploading img"><!--if user close this he/she should be able to view it in admin panel-->
+            <p>Uploading <span id="currentPage">1</span> of <span id="pagesTot">0</span><span id="uploadDots">...</span></p>
+        </div>
+        <div><!-- filesMenu -->
+            <div class="form-group">
+                <label for="pages">Select Pages</label>
+                <input type="file" id="pages" accept="image/*" multiple>
+                <p class="help-block">Have the pages in a order for displaying in correct order.</p>
+            </div>
+            <button type="submit" onclick="save(0)" class="btn btn-default">Confirm</button>
+        </div>
+        <div><!-- deleteMenu -->
+            <h3 cass="bg-danger">Delete this chapter</h3>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input class="form-control" type="password" id="password" placeholder="Write your password">
+                <p class="help-block">We need this for confirmation</p>
+            </div>
+            <button type="submit" onclick="deleteConfirmation(0)" class="btn btn-default">Confirm</button>
+        </div>
+    </div>
+</div>
+
+<script src="js/turn.js"></script>
+<script src="js/flip.js"></script>
+<script src="js/panzoom.js"></script>
+<script src="js/zoom.js"></script>
+
+<script>
+    var book = <%- JSON.stringify(book) %>;
+	var pages = book.pages_url.split(',');
+
+    console.log(pages.length);
+
+	addPages(pages, book);
+
+    window.onload = function(){
+        socket = io('/');
+        socket.on('bookRemoved', bookRemoved);
+        socket.on('searchResultId', setInfo);
+        socket.on('gobackToBook', goBackToBook);
+
+        socket.emit('searchTitle', book.title);
+        if(book.creator == USERNAME || ADMIN == true){
+            $('#admin').show();
+            //append edit objects
+            var script = document.createElement( 'script' );
+            script.type = 'text/javascript';
+            script.src = 'js/uploadStripped.js';
+            $("body").append( script );
+        }
+        else {
+            $('#admin').remove();
+        }
+
+        function setInfo(rows){
+            if(rows != -1){
+                $('#summery').text('info - ' + rows.summery);
+                $('#author').text('author - ' + rows.author);
+            }
+        }
+    }
+</script>
