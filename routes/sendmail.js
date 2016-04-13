@@ -1,5 +1,4 @@
 var key = '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';
-var ip = require('ip');
 var sendgrid = require('sendgrid')(key);
 
 function getWelcomeMail(data) {
@@ -33,7 +32,7 @@ function getWelcomeMail(data) {
 	'<footer style="width: 100%;padding: 20px;float: left;background-color: #F0F2FF;">'+
 	'<p>blabla.. lets get started!</p>'+
 	'<p>Master book4life with our really fast and easy tutorial - '+
-	'<a href="http://'+ip.address()+data.link+'">book4life tutorial</a>'+//change bok4life link later
+	'<a href="https://book4life.herokuapp.com/'+data.link+'">book4life tutorial</a>'+//change bok4life link later
 	'</p>'+
 	'</footer>';
 	return html;
@@ -42,7 +41,7 @@ function getWelcomeMail(data) {
 function getRegistrationMail(data){
 	var html = 
 	'<h3>You have created a user at book4life</h3>'+
-	'<p>For registration - <a href="http://'+ip.address()+data.link+'">http://'+ip.address()+data.link+'</a></p>'+
+	'<p>For registration - <a href="https://book4life.herokuapp.com/'+data.link+'">https://book4life.herokuapp.com/'+data.link+'</a></p>'+
 	'<p><br>If this isn\'t you then just ignore and we will delete this account!</p>'+
 	'<p>Have a nice day sincerely - <a href="http://localhost:3000/">book4life</a> :)</p>';
 	return html;//change book4life link later!
