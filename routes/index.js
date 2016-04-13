@@ -4,7 +4,7 @@ var connect = require('./getSql');
 var users = jsonHandler.getJson('users.json');
 var crypte = require('./crypte');
 var filter = require('./filter');
-var mail = require('./sendMail');
+var mail = require('./sendmail');
 
 var pendingUsers = [];
 var canCheck = true;
