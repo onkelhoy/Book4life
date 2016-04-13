@@ -304,10 +304,10 @@ function sendWelMail(data, callback){
 	mail.send({ 
 		usn: data.usn,
 		to: data.mail,
-		link: ':3000/book?id=67'
+		link: '/book?id=67'
 	}, function(err){
 		if(err) {
-			return callback('error sending welcome mail - check out http://localhost:3000/book?id=67 for learning', null);
+			return callback('error sending welcome mail - check out https://book4life.herokuapp.com/book?id=67 for learning', null);
 	  	}
 		else {
 			return callback(null, 'done');
@@ -316,7 +316,7 @@ function sendWelMail(data, callback){
 }
 function sendConMail(data, callback){
 	mail.send({ 
-		link: ':3000/confirm/'+data.usn+'/'+data.confirmLink,
+		link: '/confirm/'+data.usn+'/'+data.confirmLink,
 		config: true,
 		to: data.mail
 	}, function(err){

@@ -43,7 +43,7 @@ function getRegistrationMail(data){
 	'<h3>You have created a user at book4life</h3>'+
 	'<p>For registration - <a href="https://book4life.herokuapp.com/'+data.link+'">https://book4life.herokuapp.com/'+data.link+'</a></p>'+
 	'<p><br>If this isn\'t you then just ignore and we will delete this account!</p>'+
-	'<p>Have a nice day sincerely - <a href="http://localhost:3000/">book4life</a> :)</p>';
+	'<p>Have a nice day sincerely - <a href="https://book4life.herokuapp.com/">book4life</a> :)</p>';
 	return html;//change book4life link later!
 }
 
