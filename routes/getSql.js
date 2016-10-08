@@ -1,11 +1,12 @@
-var mysql = require('mysql');
+var mysql = require('mysql'),
+	i = require('./content/database').info;
 
 exports.getConnection = function(){
 	var connection = mysql.createConnection({
-		host     : 'sql7.freesqldatabase.com',
-		user     : 'sql7115025',
-		password : 'ldkdGPrtNy',
-		database : 'sql7115025'
+		host     : i.host,
+		user     : i.user,
+		password : i.password,
+		database : i.database
 	});
 	 
 	connection.connect(function(err){

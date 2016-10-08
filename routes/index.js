@@ -1,7 +1,5 @@
 var sess;
-var jsonHandler = require('./jsonHandle');
 var connect = require('./getSql');
-var users = jsonHandler.getJson('users.json');
 var crypte = require('./crypte');
 var filter = require('./filter');
 var mail = require('./sendmail');
@@ -26,17 +24,11 @@ function checkPendingUsers(user, callback){
 
 					emitUser(user.u, callback);
 				}
-				else {
-					return callback('e');
-				}
+				else return callback('e');
 			}
-			else {
-				return callback('e');
-			}
+			else return callback('e');
 		}
-		else {
-			return callback('it occured some problems please come back in a short bit :)', null);
-		}
+		else return callback('it occured some problems please come back in a short bit :)', null);
 	}
 	else {
 		canCheck = false;
@@ -247,16 +239,8 @@ exports.logout = function(req, res){
 	sess = req.session;
 	var usn = sess.username;
 	req.session.destroy(function(err){
-		if(err){
-			console.log(err);
-		}
-		else {
-			var index = findUser(usn);
-			if(index != -1){
-				users.splice(index, 1);
-			}
-			res.redirect('/');
-		}
+		if(err) res.status(404).send('YOU CANNOT LOG OUT!');
+		else res.redirect('/');
 	});
 }
 exports.bad = function(req, res){
@@ -339,7 +323,7 @@ exports._login = function(req, res){
 	var usn = req.body.user;
 	var pas = req.body.pass;
 	//FILTER THESE OUT!!
-	if(filter.validateTextMore(usn) && filter.validateTextMore(pas)){
+	if(filter.text(usn) && filter.text(pas)){
 		var sql = connect.getConnection();
 		if(sql != null){
 			var command = "SELECT * FROM `users` WHERE `name` = '" + usn + "'";
@@ -382,7 +366,7 @@ exports._login = function(req, res){
 exports._confirmCreator = function(req, res){
 	sess = req.session;
 	var user = req.body.name;
-	if(filter.validateTextMore(user)){//there can't be enough of security!
+	if(filter.text(user)){//there can't be enough of security!
 		if(sess.username == user || sess.admin){
 			res.end('done');
 		}
@@ -400,7 +384,7 @@ exports._register = function(req, res){
 	var pas = req.body.pass;
 	var mail = req.body.mail;
 	//FILTER THESE OUT!!
-	if(filter.validateTextMore(usn) && filter.validateTextMore(pas) && filter.validateMail(mail)){
+	if(filter.text(usn) && filter.text(pas) && filter.mail(mail)){
 		var sql = connect.getConnection();
 		var pass = crypte.enCrypte(pas);
 		if(sql != null){
@@ -456,13 +440,3 @@ String.prototype.replaceAll = function(search, replacement) {
     var target = this;
     return target.replace(new RegExp(search, 'g'), replacement);
 };
-
-// OTHER FUNCTIONS
-function findUser(name){
-	for(var i = 0; i < users.length; i++){
-		if(users[i].username == name){
-			return i;
-		}
-	}
-	return -1;
-}

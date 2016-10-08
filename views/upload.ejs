@@ -9,7 +9,7 @@
 		<form class="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
 		  <div class="form-group">
 		    <label for="btitle">Book title</label>
-		    <input type="search" oninput="search(this.value);" autocomplete="off" class="form-control" id="title" placeholder="title of book">
+		    <input type="search" oninput="Search(this.value);" autocomplete="off" class="form-control" id="title" placeholder="title of book">
 		    <select multiple class="form-control searchList"></select>
 		  </div>
 		  <div class="form-group">
@@ -21,40 +21,40 @@
 		    <input type="file" id="pages" accept="image/*" multiple>
 		    <p class="help-block">Have the pages in a order for displaying in correct order. But you can always go back and change later</p>
 		  </div>
-		  <button type="button" onclick="upload()" class="btn btn-default">Upload</button>
+		  <button type="button" onclick="Uploader()" class="btn btn-default">Upload</button>
 		</form>
 
 		<div id="popup">
 			<div class="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
-				<p class="help-block">There was no such book, add the information to create one</p>
-				<div class="form-group">
-					<label for="author">Author</label>
-					<input type="text" class="form-control" id="author" placeholder="author of the book">
+				<div id="bookCreate">
+					<p class="help-block">There was no such book, add the information to create one</p>
+					<div class="form-group">
+						<label for="author">Author</label>
+						<input type="text" class="form-control" id="author" placeholder="author of the book">
+					</div>
+					<div class="form-group">
+						<label for="tags">Tags</label>
+						<input type="text" class="form-control" id="tags" placeholder="tags,are,amazing">
+					</div>
+					<div class="form-group">
+						<label>Summery</label>
+						<textarea id="summery" class="form-control" rows="3" placeholder="Write a short summery for the book"></textarea>
+					</div>
+					<button type="button" onclick="uploadbook()" class="btn btn-default">Upload</button>
 				</div>
-				<div class="form-group">
-					<label for="tags">Tags</label>
-					<input type="text" class="form-control" id="tags" placeholder="tags,are,amazing">
-				</div>
-				<div class="form-group">
-					<label>Summery</label>
-					<textarea id="summery" class="form-control" rows="3" placeholder="Write a short summery for the book"></textarea>
-				</div>
-				<button type="button" onclick="uploadBook()" class="btn btn-default">Upload</button>
 			</div>
 		</div>
 	</div>
 
 	<div class="info">
-		<img src="http://goo.gl/mSJPGp" alt="loading gif">
+		<img src="http://www.tbaf.org.tw/event/2016safe/imgs/loader1.gif" alt="loading gif">
 		<p>Uploading page <span id="current">0</span> of <span id="count"></span></p>
 	</div>
 
-	<script>
-		var USERNAME = "<%= username %>";
-		var GHF = undefined;
-	</script>
-	<script src="/socket.io/socket.io.js"></script>
 	<script src="js/filter.js"></script>
+	<script src="js/book/upload.js"></script>
 	<script src="js/upload.js"></script>
+	<script src="js/search.js"></script>
+
 </body>
 </html>

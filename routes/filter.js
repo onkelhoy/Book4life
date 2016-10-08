@@ -1,5 +1,5 @@
-exports.validateText = function(text) {
-	if(text.match(/[^\w\s\-\.\,]/)){ // not valid
+exports.text = function(text) {
+	if(text.match(/[^\w\s\-\.\,åöäÖÅÄ?!:/]/)){ // not valid
 		return false;
 	}
 	else { // valid
@@ -7,16 +7,7 @@ exports.validateText = function(text) {
 	}
 }
 
-exports.validateTextMore = function(text) { //add in for special characters å,ä,ö.. etc
-	if(text.match(/[^\w\s\-\.\,]/)){ // not valid
-		return false;
-	}
-	else { // valid
-		return true;
-	}
-}
-
-exports.validateNum = function(num){
+exports.num = function(num){
 	try{
 		var b = num * 2; 
 		return true;
@@ -26,7 +17,7 @@ exports.validateNum = function(num){
 	}
 }
 
-exports.validateMail = function(mail){
+exports.mail = function(mail){
 	var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(mail);
 }

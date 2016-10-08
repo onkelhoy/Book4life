@@ -1,5 +1,5 @@
 function validateText(text) {
-	if(text.match(/[^\w\s\-\.\,]/)){ // not valid
+	if(text.match(/[^\w\s\-\.\,åöäÖÅÄ?!:/]/)){ // not valid
 		return false;
 	}
 	else { // valid
@@ -8,12 +8,7 @@ function validateText(text) {
 }
 
 function validateTextMore(text) { //add in for special characters å,ä,ö.. etc
-	if(text.match(/[^\w\s\-\.\,]/)){ // not valid
-		return false;
-	}
-	else { // valid
-		return true;
-	}
+	return validateText(text); //if its used...
 }
 
 function validateMail(mail){

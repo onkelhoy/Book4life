@@ -80,14 +80,14 @@
                             <div class="box">
                                 <span><em>left - </em></span>
                                 <div class="btn-group">
-                                    <button onclick="modify(0, 1)" class="btn btn-default"><i class="fa fa-angle-left"></i></button>
-                                    <button onclick="modify(1, 1)" class="btn btn-default"><i class="fa fa-angle-right"></i></button>
+                                    <button onclick="display('add', -1)" class="btn btn-default"><i class="fa fa-angle-left"></i></button>
+                                    <button onclick="display('add', 1)" class="btn btn-default"><i class="fa fa-angle-right"></i></button>
                                 </div>
                                 <span><em> - right</em></span>
                             </div>
                             <div class="add">
-                                <button onclick="before(1)" class="btn btn-danger btn-xs">before</button>
-                                <button onclick="before(0)" class="btn btn-primary btn-xs">after</button>
+                                <button class="btn btn-danger btn-xs">before</button>
+                                <button class="btn btn-primary btn-xs">after</button>
                             </div>
                         </div>
                     </li>
@@ -97,14 +97,14 @@
                             <div class="box">
                                 <span><em>left - </em></span>
                                 <div class="btn-group">
-                                    <button onclick="modify(0)" class="btn btn-default"><i class="fa fa-angle-left"></i></button>
-                                    <button onclick="modify(1)" class="btn btn-default"><i class="fa fa-angle-right"></i></button>
+                                    <button onclick="display('change', -1)" class="btn btn-default"><i class="fa fa-angle-left"></i></button>
+                                    <button onclick="display('change', 1)" class="btn btn-default"><i class="fa fa-angle-right"></i></button>
                                 </div>
                                 <span><em> - right</em></span>
                             </div>
                             <div class="change">
-                                <button onclick="removeP()" class="btn btn-danger btn-xs">remove</button>
-                                <button onclick="changeP()" class="btn btn-primary btn-xs">change</button>
+                                <button class="btn btn-danger btn-xs">remove</button>
+                                <button class="btn btn-primary btn-xs">change</button>
                             </div>
                         </div>
                     </li>
@@ -117,7 +117,7 @@
 <div id="popup">
     <div class="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
         <button type="button" onclick="hidePop()" class="close" aria-label="Close"><i class="fa fa-times"></i></button>
-        <div><!-- changeMenu -->
+        <div><!-- changeMenu 1 -->
             <h3>Change current <span></span> page</h3>
             <div class="form-group">
                 <label for="page">Select Page</label>
@@ -131,23 +131,23 @@
             </div>
             <button type="submit" onclick="save(1)" class="btn btn-default">Confirm</button>
         </div>
-        <div><!-- removeMenu -->
+        <div><!-- removeMenu 2 -->
             <p class="removeInfo"></p>
             <button type="submit" class="btn btn-default removeCon">Confirm</button>
         </div>
-        <div><!-- errorMenu -->
+        <div><!-- errorMenu 3 -->
             <p class="bg-danger"></p>
             <button class="btn btn-danger" onclick="hidePop()">Okay <i class="fa fa-frown-o"></i></button>
         </div>
-        <div><!-- succesMenu -->
+        <div><!-- succesMenu 4 -->
             <p class="bg-success"></p>
             <button class="btn btn-success" onclick="hidePop()">Okay <i class="fa fa-smile-o"></i></button>
         </div>
-        <div><!-- uploadingMenu -->
+        <div><!-- uploadingMenu 5 -->
             <img src="" alt="uploading img"><!--if user close this he/she should be able to view it in admin panel-->
             <p>Uploading <span id="currentPage">1</span> of <span id="pagesTot">0</span><span id="uploadDots">...</span></p>
         </div>
-        <div><!-- filesMenu -->
+        <div><!-- filesMenu 6 -->
             <div class="form-group">
                 <label for="pages">Select Pages</label>
                 <input type="file" id="pages" accept="image/*" multiple>
@@ -155,7 +155,7 @@
             </div>
             <button type="submit" onclick="save(0)" class="btn btn-default">Confirm</button>
         </div>
-        <div><!-- deleteMenu -->
+        <div><!-- deleteMenu 7 -->
             <h3 cass="bg-danger">Delete this chapter</h3>
             <div class="form-group">
                 <label for="password">Password</label>
@@ -164,38 +164,30 @@
             </div>
             <button type="submit" onclick="deleteConfirmation(0)" class="btn btn-default">Confirm</button>
         </div>
+        <div id="fileUploader"><!-- filesMenu 8 (better) -->
+            <div class="form-group">
+                <label for="pagesb">Select Pages</label>
+                <input type="file" id="pagesb" accept="image/*" multiple>
+                <p class="help-block">Have the pages in a order for displaying in correct order.</p>
+            </div>
+            <button type="submit" class="btn btn-default">Confirm</button>
+        </div>
     </div>
 </div>
 
-<script src="js/turn.js"></script>
-<script src="js/flip.js"></script>
-<script src="js/panzoom.js"></script>
-<script src="js/zoom.js"></script>
+<script src="js/book/pages/turn.js"></script>
+<script src="js/book/pages/flip.js"></script>
+<script src="js/book/pages/panzoom.js"></script>
+<script src="js/book/pages/zoom.js"></script>
 
 <script>
     var book = <%- JSON.stringify(book) %>;
-	var pages = book.pages_url.split(',');
+	var pagesarr = book.pages_url.split(',');
 
-    console.log(pages.length);
-
-	addPages(pages, book);
+	addPages(pagesarr, book);
 
     window.onload = function(){
-        socket = io('/');
-        socket.on('bookRemoved', bookRemoved);
-        socket.on('searchResultId', setInfo);
-        socket.on('gobackToBook', goBackToBook);
-
-        socket.emit('searchTitle', book.title);
-        if(book.creator == USERNAME || ADMIN == true){
-            $('#admin').show();
-            //append edit objects
-            var script = document.createElement( 'script' );
-            script.type = 'text/javascript';
-            script.src = 'js/uploadStripped.js';
-            $("body").append( script );
-        }
-        else {
+        if(book.creator == '<%= username %>'){
             $('#admin').remove();
         }
 

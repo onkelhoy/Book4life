@@ -7,11 +7,6 @@
 	<link rel="stylesheet" href="css/popupDesign.css">
 </head>
 <body>
-	<script>
-		var ADMIN = <%= admin %>;
-		var USERNAME = '<%= username %>';
-	</script>
-
 	<% if(book.kapitel == 1) { %>
 		<% include partials/pages.ejs %>
 	<% } else { %>
@@ -24,9 +19,8 @@
 	<% } %>
 
 	<% include partials/footer.ejs %>
-	<script src="/socket.io/socket.io.js"></script>
-	<script src="js/bookMenu.js"></script>
+	<script src="js/book/menu.js"></script>
 	<script src="js/filter.js"></script>
-	<script src="js/upload.js"></script>
+	<script src="js/book/upload.js"></script>
 </body>
 </html>

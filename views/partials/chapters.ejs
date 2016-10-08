@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row">
 		<% for(var i = 0; i < chapters.length; i++) { %>
-			<div class="col-sm-2 col-xs-12" id="book">
+			<div class="col-sm-2 col-xs-6" id="book">
 				<a href="/book?id=<%= chapters[i].id %>">
 					<img src="http://i.imgur.com/1P4vzie.png" alt="chapter picture">
 					<p><%= chapters[i].chapter %></p>
@@ -32,6 +32,11 @@
             	<ul>
                     <li id="adminDelete" class="centerV"><a href="javascript:void(0)" class="white" onclick="DELETE(2)"><i class="fa fa-fw fa-trash-o"></i> delete book</a></li>
                     <li class="centerV"><a href="javascript:void(0)" class="white" onclick="ADDBOOK()">&nbsp;<i class="fa fa-plus"></i>&nbsp; add Chapter</a></li>
+
+                    <li class="centerV"><a href="javascript:void(0)" class="white" onclick="showBooksetting()">&nbsp;<i class="fa fa-cog"></i>&nbsp; book settings</a></li>
+
+                    <!--<li class="centerV"><a href="javascript:void(0)" class="white" onclick="showPopup(5)">&nbsp;<i class="fa fa-plus"></i>&nbsp; add front</a></li>
+                    <li class="centerV"><a href="javascript:void(0)" class="white" onclick="showPopup(6)">&nbsp;<i class="fa fa-plus"></i>&nbsp; add back</a></li>-->
                 </ul>
             </div>
         </li>
@@ -63,7 +68,6 @@
             <div class="form-group">
                 <label for="chapterName">Chapter Name</label>
                 <input class="form-control" type="text" id="chapterName" placeholder="Name of the chapter">
-                <p class="help-block">Have the pages in a order for displaying in correct order.</p>
             </div>
             <div class="form-group">
                 <label for="pages">Select Pages</label>
@@ -72,48 +76,74 @@
             </div>
             <button type="submit" onclick="uploadChapter()" class="btn btn-default">Confirm</button>
         </div>
+        <div id="bookmenu"><!--  -->
+            <h3>Front</h3>
+            <div style='padding:5px'>
+                <div><label for='front-outer'>outer-page <span style='color:red;'></span></label>
+                <div class='input-group'>
+                    <input type='text' placeholder='' id='front-outer' class='form-control'>
+
+                    <span class='input-group-btn'>
+                        <input type='file' accept='image/*' class='inputfile'>
+                        <button class='btn btn-primary'>Choose file</button></span>
+                    <span class='input-group-btn'>
+                        <input type='button' class='btn btn-success' value='upload' onclick='bsUpload($(this), 1)'></span>
+                </div></div>
+                <div><label for='front-inner'>inner-page <span style='color:red;'></span></label>
+                <div class='input-group'>
+                    <input type='text' placeholder='' class='form-control' id='front-inner'>
+
+                    <span class='input-group-btn'>
+                        <input type='file' accept='image/*' class='inputfile'>
+                        <button class='btn btn-primary'>Choose file</button></span>
+                    <span class='input-group-btn'>
+                        <input type='button' class='btn btn-success' value='upload' onclick='bsUpload($(this), 2)'></span>
+                </div></div>
+            </div>
+            
+            <h3>End</h3>
+            <div style='padding:5px'>
+                <div><label for='end-inner'>inner-page <span style='color:red;'></span></label>
+                <div class='input-group'>
+                    <input type='text' placeholder='' class='form-control' id='end-inner'>
+
+                    <span class='input-group-btn'>
+                        <input type='file' accept='image/*' class='inputfile'>
+                        <button class='btn btn-primary'>Choose file</button></span>
+                    <span class='input-group-btn'>
+                        <input type='button' class='btn btn-success' value='upload' onclick='bsUpload($(this), 4)'></span>
+                </div></div>
+                <div><label for='end-outer'>outer-page <span style='color:red;'></span></label>
+                <div class='input-group'>
+                    <input type='text' placeholder='' class='form-control' id='end-outer'>
+
+                    <span class='input-group-btn'>
+                        <input type='file' accept='image/*' class='inputfile'>
+                        <button class='btn btn-primary'>Choose file</button></span>
+                    <span class='input-group-btn'>
+                        <input type='button' class='btn btn-success' value='upload' onclick='bsUpload($(this), 3)'></span>
+                </div></div>
+            </div>
+        </div>
     </div>
 </div>
 
 <div class="info">
-    <img src="http://goo.gl/mSJPGp" alt="loading gif">
+    <img src="http://www.tbaf.org.tw/event/2016safe/imgs/loader1.gif" alt="loading gif">
     <p>Uploading page <span id="current">0</span> of <span id="count"></span></p>
 </div>
 
 <script>
     var book = <%- JSON.stringify(book) %>;
-    var GHF = 'hej';
-    
+
 	window.onload = function(){
-        canLeave = true;
-        socket = io('/');
-        socket.on('bookRemoved', bookRemoved);
-        socket.on('updateAns', updateAns);
-        socket.on('uploadAns', bookupl);
-
-        function updateAns(data){
-            if(data.type == 'error'){
-                showError(data.msg, 1);
-            }
-            else {
-                showSucces(data.msg, 1);
-            }
-        }
-        function bookupl(){
-            showSucces('Chapter succesfully uploaded', 1, function(){
-                window.location.reload();
-            });
-        }
-
-        if(ADMIN != true){
-            if(USERNAME == book.creator) {
+        if(!<%= admin %>){
+            if('<%= username %>' == book.creator) {
                 $('#admin').show();
                 $('#adminDelete').remove();
             } 
             else $('#admin').remove();
         }
-        else {
-            $('#admin').show();
-        }
+        else $('#admin').show();
     }
 </script>

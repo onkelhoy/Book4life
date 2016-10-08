@@ -10,7 +10,7 @@
     width: 20%;
     height: 100%;
     max-width: 350px;
-    min-width: 200px;
+    min-width: 230px;
     color: white;
     left: -20%;
     top: 0;
@@ -204,4 +204,18 @@
 }
 input[type=range] {
     cursor: pointer;
+}
+
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile + button {
+    border-radius: 0;
 }

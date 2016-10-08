@@ -8,6 +8,8 @@ $(document).ready(function(){
 		});
 		$("#alphabet_list").append(elm)
 	}
+
+	letterPress('a'); // print the defualt books
 });
 
 function printbooks(books){
@@ -24,7 +26,7 @@ function printbooks(books){
 
 			var book = $('<div></div>')
 				.attr('id', 'book')
-				.addClass('col-sm-2')
+				.addClass('col-sm-2 col-xs-6')
 				.append(a);
 			$('.booklist').append(book);
 		}

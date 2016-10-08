@@ -14,6 +14,7 @@ var ioHandler = require('./routes/ioHandle'),
 
 // MODULE STARTS
 ioHandler.start(io);//could be done better
+require('./routes/sqldump')();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -23,12 +24,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
 // app.use('/', routes);
+app.use('/book', require('./routes/book'));
 
 	app.get('/', routes.index);
 	app.get('/login', routes.login);
 	app.get('/register', routes.signup);
 	app.get('/logout', routes.logout);
-	app.get('/book', routes.book);
 	app.get('/tutorial', routes.tutorial);
 	app.get('/upload', routes.upload);
 	app.get('/problem', routes.problem);

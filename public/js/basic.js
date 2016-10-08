@@ -28,4 +28,15 @@ $(document).ready(function(){
 			$('.logo').attr('src', 'content/logo3.png');
 		}
 	}
+
+	$('.inputfile').change(function(e){
+		var files = e.target.files;
+		if(files.length != 0){
+			//input placeholder = name
+
+			var div = $(this).parent().parent();
+			div.children('input').val(files[0].name);
+			// $(this).parent().parent.children().eq(0).val(files[0].name);
+		}
+	});
 });

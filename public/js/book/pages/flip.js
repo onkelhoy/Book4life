@@ -128,8 +128,40 @@ $("#book").bind("turned", function(event, page, view) {
 
 
  function addPages(pages, book){
-    $('#book').append($('<div></div>').addClass('hard').addClass('page').append($('<div></div>')).append($('<p></p>').text(book.chapter)));
-    $('#book').append($('<div></div>').addClass('hard').addClass('page').addClass('inside').append($('<div></div>')).append($('<ul></ul>').append($('<li id="title"></li>').text('title - ' + book.title)).append($('<li id="summery"></li>').text('info - ' + book.summery)).append($('<li id="author"></li>').text('author - ' + book.author))));
+    //front
+    $.ajax({
+        method: 'GET',
+        data: {
+            title: book.title
+        },
+        url: '/book/title'
+    }).done(function(mainBook){
+        addpages(pages, book, (mainBook.length != 0 ? mainBook[0] : null));
+    }).fail(function(xhr){
+        addpages(pages, book, null);
+    });
+}
+
+function addpages(pages, book, main){
+    if(main == null || main.front == null || main.front == ',') {
+        $('#book').append($('<div></div>').addClass('hard page').append($('<div></div>')).append($('<p></p>').text(book.chapter)));
+        $('#book').append($('<div></div>').addClass('hard page inside').append($('<div></div>')).append($('<ul></ul>').append($('<li id="title"></li>').text('title - ' + book.title)).append($('<li id="summery"></li>').text('info - ' + book.summery)).append($('<li id="author"></li>').text('author - ' + book.author))));
+    } else {
+        //add delete option to popup
+
+        var front = main.front.split(',');
+        $('#book').append($("<div></div>").append($("<img>").attr('src', front[0])).addClass('page hard'));
+        if(front.length > 1) {
+            $('#book').append($("<div></div>").append($("<img>").attr('src', front[1])).addClass('page hard'));
+        }
+        else {
+            //only one and a fill
+
+            $('#book').append($('<div></div>').addClass('hard page inside').append($('<div></div>')).append($('<ul></ul>').append($('<li id="title"></li>').text('title - ' + book.title)).append($('<li id="summery"></li>').text('info - ' + book.summery)).append($('<li id="author"></li>').text('author - ' + book.author))));
+        }
+    }
+
+
     for(var i =0 ; i< pages.length; i++){
         var page = $("<div></div>").append($("<img>").attr('src', pages[i]).attr('alt', 'page ' + i)).addClass('page');
         $('#book').append(page);
@@ -139,8 +171,22 @@ $("#book").bind("turned", function(event, page, view) {
         $('#book').append($('<div></div>').addClass('fill').addClass('page'));
     }
 
-    $('#book').append($('<div></div>').addClass('hard').addClass('page').addClass('inside').append($('<div></div>')));
-    $('#book').append($('<div></div>').addClass('hard').addClass('page').append($('<div></div>')).append($('<p></p>').text('end')));
+
+    //end
+    if(main == null || main.end == null || main.end == ',') {
+        $('#book').append($('<div></div>').addClass('hard page inside').append($('<div></div>')));
+        $('#book').append($('<div></div>').addClass('hard page').append($('<div></div>')).append($('<p></p>').text('end')));
+    } else {
+        var end = main.end.split(',');
+
+        if(end.length > 1) {
+            $('#book').append($("<div></div>").append($("<img>").attr('src', end[1])).addClass('page hard'));
+        }
+        else { //only one and a fill
+            $('#book').append($('<div></div>').addClass('hard page inside').append($('<div></div>')));
+        }
+        $('#book').append($("<div></div>").append($("<img>").attr('src', end[0])).addClass('page hard'));
+    }
 
     init();
     $('.slider').attr('max', $("#book").turn("pages")/2 + 1);

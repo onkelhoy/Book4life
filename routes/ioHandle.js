@@ -38,9 +38,9 @@ function redirectToBook(title){
 }
 function deleteBook(data){
 	var client = this;
-	if(filter.validateTextMore(data.password) &&
-		filter.validateTextMore(data.user) &&
-		filter.validateNum(data.id)){
+	if(filter.text(data.password) &&
+		filter.text(data.user) &&
+		filter.num(data.id)){
 
 		var sql = connect.getConnection();
 		if(sql != null){
