@@ -3,15 +3,16 @@
 	<% include partials/head.ejs %>
 </head>
 <body class="<%= classname %>">
-	<% include partials/logout.ejs %>
 	<% if(type == '404') { %>
 		<% include partials/bad.ejs %>
-	<% } %>
-	<% if(type == 'problem') { %>
-		<% include partials/problem.ejs %>
-	<% } %>
-	<% if(type == 'sql-error') { %>
-		<% include partials/html/sqlError.html %>
+	<% } else {%>
+		<% include partials/logout.ejs %>
+		<% if(type == 'problem') { %>
+			<% include partials/problem.ejs %>
+		<% } %>
+		<% if(type == 'sql-error') { %>
+			<% include partials/html/sqlError.html %>
+		<% } %>
 	<% } %>
 	<% include partials/footer.ejs %>
 </body>

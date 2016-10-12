@@ -1,0 +1,36 @@
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile + button {
+    border-radius: 0;
+}
+.inputfile + label {
+    padding: 7px 5px;
+    color: white;
+    background-color: red;
+    display: inline-block;
+    cursor: pointer; /* "hand" cursor */
+
+    max-width: 180px;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+}
+.inputfile:focus + label {
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: red;
+}
+.inputfile + label * {
+    pointer-events: none;
+}

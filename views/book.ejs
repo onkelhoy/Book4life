@@ -1,26 +1,31 @@
 <html>
 <head>
 	<% include partials/head.ejs %>
-	<link rel="stylesheet" href="css/bookDesign.css">
-	<link rel="stylesheet" href="css/pagesDesign.css">
-	<link rel="stylesheet" href="css/menuDesign.css">
-	<link rel="stylesheet" href="css/popupDesign.css">
+	<link rel="stylesheet" href="css/book.css">
+	<link rel="stylesheet" href="css/pages.css">
+	<link rel="stylesheet" href="css/menu.css">
+	<link rel="stylesheet" href="css/popup.css">
 </head>
 <body>
-	<% if(book.kapitel == 1) { %>
-		<% include partials/pages.ejs %>
+	<script>
+		var USER = <%- JSON.stringify(user) %>;
+		var BOOK = <%- JSON.stringify(row) %>;
+	</script>
+
+	<% if(type == 'chapter') { %>
+		<% include partials/book/chapter.ejs %>
 	<% } else { %>
 		<script>
 			if($('body').hasClass('black')){ // prevent the dark theme
 				$('body').removeClass('black');
 			}
 		</script>
-		<% include partials/chapters.ejs %>
+		<% include partials/book/book.ejs %>
 	<% } %>
 
 	<% include partials/footer.ejs %>
 	<script src="js/book/menu.js"></script>
-	<script src="js/filter.js"></script>
+	<script src="js/helper/filter.js"></script>
 	<script src="js/book/upload.js"></script>
 </body>
 </html>

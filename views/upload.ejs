@@ -1,7 +1,7 @@
 <html>
 <head>
 	<% include partials/head.ejs %>
-	<link rel="stylesheet" href="css/uploadDesign.css">
+	<link rel="stylesheet" href="css/upload.css">
 </head>
 <body>
 	<% include partials/logout.ejs %>
@@ -17,31 +17,32 @@
 		    <input type="text" class="form-control" id="chapter" placeholder="the current chapter">
 		  </div>
 		  <div class="form-group">
-		    <label for="pages">Select pages</label>
-		    <input type="file" id="pages" accept="image/*" multiple>
+		    <input class='inputfile' type="file" id="pages" accept="image/*" data-multiple-caption="{count} files selected" multiple>
+            <label for="pages"><i class="fa fa-upload" aria-hidden="true"></i> Select Pages</label>
 		    <p class="help-block">Have the pages in a order for displaying in correct order. But you can always go back and change later</p>
 		  </div>
 		  <button type="button" onclick="Uploader()" class="btn btn-default">Upload</button>
 		</form>
+	</div>
 
-		<div id="popup">
-			<div class="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
-				<div id="bookCreate">
-					<p class="help-block">There was no such book, add the information to create one</p>
-					<div class="form-group">
-						<label for="author">Author</label>
-						<input type="text" class="form-control" id="author" placeholder="author of the book">
-					</div>
-					<div class="form-group">
-						<label for="tags">Tags</label>
-						<input type="text" class="form-control" id="tags" placeholder="tags,are,amazing">
-					</div>
-					<div class="form-group">
-						<label>Summery</label>
-						<textarea id="summery" class="form-control" rows="3" placeholder="Write a short summery for the book"></textarea>
-					</div>
-					<button type="button" onclick="uploadbook()" class="btn btn-default">Upload</button>
+	<div id="popup">
+		<div class="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
+       		<button type="button" onclick="hidePop()" class="close" aria-label="Close"><i class="fa fa-times"></i></button>
+			<div class="bookCreate">
+				<p class="help-block">There was no such book, add the information to create one</p>
+				<div class="form-group">
+					<label for="author">Author</label>
+					<input type="text" class="form-control" id="author" placeholder="author of the book">
 				</div>
+				<div class="form-group">
+					<label for="tags">Tags</label>
+					<input type="text" class="form-control" id="tags" placeholder="tags,are,amazing">
+				</div>
+				<div class="form-group">
+					<label>Summery</label>
+					<textarea id="summery" class="form-control" rows="3" placeholder="Write a short summery for the book"></textarea>
+				</div>
+				<button type="button" onclick="uploadbook()" class="btn btn-default">Upload</button>
 			</div>
 		</div>
 	</div>
@@ -51,10 +52,10 @@
 		<p>Uploading page <span id="current">0</span> of <span id="count"></span></p>
 	</div>
 
-	<script src="js/filter.js"></script>
+	<script src="js/helper/filter.js"></script>
+	<script src="js/helper/search.js"></script>
 	<script src="js/book/upload.js"></script>
 	<script src="js/upload.js"></script>
-	<script src="js/search.js"></script>
 
 </body>
 </html>

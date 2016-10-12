@@ -1,0 +1,140 @@
+<div class="t">
+    <div class="tc rel" id="zoomElm">
+        <div class="book" id="book">
+            
+        </div>
+        
+        <input class="slider" type="range" min="1" max="10" value="1" step="1" onchange="slider(this.value)"/>
+    </div>
+</div>
+<div class="zoom_controls">
+	<li><button title=" zoom in " onclick="zoomIn()"><i class="fa fa-search-plus fa-2x"></i></button></li>
+	<li><button title=" zoom out " onclick="zoomOut()"><i class="fa fa-search-minus fa-2x"></i></button></li>
+	<li><button title=" reset " onclick="reset()"><i class="fa fa-search fa-2x"></i></button></li>
+</div>
+
+<a href="javascript:void(0)" onclick="blacked()" id="darkTheme"><i class="fa fa-square fa-5x"></i></a>
+<a href="javascript:void(0)" id="back" onclick='goBack()'><i class="fa fa-arrow-left fa-5x"></i></a>
+
+<span class="menuBtn"><i class="fa fa-bars fa-4x"></i></span>
+<div class="menu">
+    <div class="closeMenu">Book Menu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-times"></i></div>
+    <ul class="nav">
+        <li>
+            <p>User Panel<i class="fa fa-caret-left"></i></p>
+            <div class="c">
+                <ul>
+                    <li class="centerV"><a href="/"><i class="fa fa-home fa-fw"></i> Home</a></li>
+                    <li class="centerV"><a href="/authenticate/logout"><i class="fa fa-fw fa-user-times"></i> Logout</a></li>
+                    <li class="centerV"><a href="javascript:void(0)" onclick="goBack()"><i class="fa fa-fw fa-chevron-left"></i> Go Back</a></li>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <p>Zoom Panel<i class="fa fa-caret-left"></i></p>
+            <div class="c">
+                <ul>
+                    <div onclick="zoomIn()"><i class="fa fa-search-plus"></i> - zoom in</div>
+                    <div onclick="zoomOut()"><i class="fa fa-search-minus"></i> - zoom out</div>
+                    <div onclick="reset()"><i class="fa fa-search"></i> - reset</div>
+                </ul>
+            </div>
+        </li>
+        <li>
+            <p>Book Panel<i class="fa fa-caret-left"></i></p>
+            <div class="c">
+                <section>
+                    <div>
+                        <p class="l">left</p>
+                        <div class="lb">
+                            <p class="lc">0</p>
+                            <p><i class="fa fa-angle-left"></i>&nbsp;&nbsp;Previus</p>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="r">right</p>
+                        <div class="rb">
+                            <p class="rc">0</p>
+                            <p>Next&nbsp;&nbsp;<i class="fa fa-angle-right"></i></p>
+                        </div>
+                    </div>
+                </section>
+                <div class="ratio">
+                    <input  class="form-control" onClick="this.setSelectionRange(0, this.value.length)" id="ratioInfo" type="text" value="1">
+                    <input id="ratioSlider" type="range" min="0.5" max="2.5" step="0.01" value="1" />
+                </div>
+            </div>
+        </li>
+        <li id="admin">
+            <p>Admin Panel<i class="fa fa-cog admin"></i></p>
+            <div class="c">
+                <div class="c">
+                    <ul>
+                        <li class="centerV"><a href="javascript:void(0)" class="white" onclick="removechap()"><i class="fa fa-fw fa-trash-o"></i> delete chapter</a></li>
+                        <li class="centerV"><a href="javascript:void(0)" class="white" onclick="showPopupClass('addpages');">&nbsp;<i class="fa fa-arrow-circle-down"></i>&nbsp;&nbsp;Insert Pages</a></li>
+                        <li class="centerV"><a href="javascript:void(0)" class="white" onclick="saveRatio()">&nbsp;<i class="fa fa-bookmark"></i>&nbsp;&nbsp;Save Ratio</a></li>
+                    </ul>
+                </div>
+                <ul class="alist nav">
+                    <li>
+                        <p>modify<i class="fa fa-caret-left"></i></p>
+                        <div class="c">
+                            <div class="box">
+                                <span><em>left - </em></span>
+                                <div class="btn-group">
+                                    <button onclick="doChange('lc')" class="btn btn-default"><i class="fa fa-angle-left"></i></button>
+                                    <button onclick="doChange('rc')" class="btn btn-default"><i class="fa fa-angle-right"></i></button>
+                                </div>
+                                <span><em> - right</em></span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div class="info">
+    <img src="http://www.tbaf.org.tw/event/2016safe/imgs/loader1.gif" alt="loading gif">
+    <p>Uploading page <span id="current">0</span> of <span id="count"></span></p>
+</div>
+
+<div id="popup">
+    <div class="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
+        <button type="button" onclick="hidePop()" class="close" aria-label="Close"><i class="fa fa-times"></i></button>
+        
+        <div class='addpages'>
+            <div class="form-group">
+                <input class='inputfile' type="file" id="page1" accept="image/*" data-multiple-caption="{count} files selected" multiple>
+                <label for="page1"><i class="fa fa-upload" aria-hidden="true"></i> Select Pages</label>
+            </div>
+            <button type="submit" onclick="add()" class="btn btn-default">Confirm</button>
+            <span class='info' style='display: none;'>Uploading page <span id="current">0</span> of <span id="count"></span></span>
+        </div>
+
+        <div class='modifypages' side='0'>
+            <div><label for='pagefile'>Modify Current <span></span> Page</label>
+                <div class='input-group'>
+                    <input type='text' placeholder='' class='form-control' id='pagelink'>
+
+                    <span class='input-group-btn'>
+                        <input type='file' id="pagefile" accept='image/*' class='inputfile'>
+                        <button class='btn btn-primary'>Choose file</button></span>
+                </div>
+                <br>
+                <div class='btn-group'>
+                    <input type='button' class='btn btn-success' value='Update' onclick='change()'>
+                    <input type='button' class='btn btn-danger' value='Remove' onclick='remove()'>
+                </div>
+                <span></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/book/pages/turn.js"></script>
+<script src="js/book/pages/flip.js"></script>
+<script src="js/book/pages/panzoom.js"></script>
+<script src="js/book/pages/zoom.js"></script>
+<script src="js/book/chapter.js"></script>

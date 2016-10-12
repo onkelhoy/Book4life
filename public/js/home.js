@@ -18,16 +18,13 @@ function printbooks(books){
 
 		for(var i = 0; i < books.length; i++) {
 			var img = $('<img>').attr('src', 'http://i.imgur.com/cUV4dew.png').attr('alt', 'book picture');
-			var p = $('<p></p>').text(books[i].title);
-			var a = $('<a></a>')
-					.attr('href', '/book?id='+books[i].id)
+			var p = $('<p>').text(books[i].title);
+			var a = $('<a>')
+					.attr('href', '/book/'+books[i].id)
 					.append(img)
 					.append(p);
 
-			var book = $('<div></div>')
-				.attr('id', 'book')
-				.addClass('col-sm-2 col-xs-6')
-				.append(a);
+			var book = $('<div>').addClass('col-sm-2 col-xs-6 bookclass').append(a);
 			$('.booklist').append(book);
 		}
 	}

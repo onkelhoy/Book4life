@@ -8,7 +8,7 @@
 			<a href="/upload"><i class="fa fa-book"></i>Upload</a>
 		</div>
 		<div>
-			<a href="/logout"><i class="fa fa-user-times"></i>Logout</a>
+			<a href="/authenticate/logout"><i class="fa fa-user-times"></i>Logout</a>
 		</div>
 		
 	</div>	
@@ -36,4 +36,4 @@
 	    }
 	});
 </script>
-<p id="logout" class="hidden-xs">You are logged in as <strong><%= username %></strong> (<a href="/logout">Logout</a>)</p>
+<p id="logout" class="hidden-xs">You are logged in as <strong><%= user.username %></strong> (<a href="/authenticate/logout">Logout</a>)</p>

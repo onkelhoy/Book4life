@@ -9,8 +9,8 @@ function uploadFiles(files, callback){
     CANLEAVE = false;
     $('.container').hide();
     $('.info').show();
-    $('.info > p > span#current').text(0);
-    $('.info > p > span#count').text(files.length);
+    $('span#current').text(0);
+    $('span#count').text(files.length);
 
     function loadLinks(){
         if(index < files.length) {
@@ -19,7 +19,7 @@ function uploadFiles(files, callback){
                 else {
                     links.push(link);
                     index++;
-                    $('.info > p > span#current').text(index);
+                    $('span#current').text(index);
 
                     loadLinks();
                 }

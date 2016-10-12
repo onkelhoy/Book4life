@@ -1,9 +1,10 @@
 <html>
 <head>
 	<% include partials/head.ejs %>
-	<link rel="stylesheet" href="css/userDesign.css">
-	<script src="js/filter.js"></script>
-	<script src="js/login.js"></script>
+	<link rel="stylesheet" href="css/user.css">
+	<link rel="stylesheet" href="css/popup.css">
+	<script src="js/helper/filter.js"></script>
+	<script src="js/user/login.js"></script>
 </head>
 <body class="<%= classname %>">
 	<div class="container">
@@ -30,6 +31,13 @@
 			</div>
 		</form>
 	</div>
+
+	<div id="popup">
+	    <div class="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
+	        <button type="button" onclick="hidePop()" class="close" aria-label="Close"><i class="fa fa-times"></i></button>
+	    </div>
+	</div>
+
 	<% include partials/footer.ejs %>
 
 	<% if(classname == 'login') { %>
